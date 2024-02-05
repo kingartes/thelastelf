@@ -27,4 +27,24 @@ public class InputManager : SingletoneComponent<InputManager>
 
         return movementVector.normalized;
     }
+
+    public Vector2 GetMouseScreenPosition()
+    {
+        return Input.mousePosition;
+    }
+
+    public bool IsSwitchBuildingMode()
+    {
+        return Input.GetKeyDown(KeyCode.B);
+    }
+
+    public bool IsLeftMouseButtonClicked()
+    {
+        return Input.GetMouseButtonDown(0);
+    }
+
+    public bool IsEvasionPressed()
+    {
+        return Input.GetKeyDown(KeyCode.LeftShift); 
+    }
 }
