@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class StateTransition
 {
-    private State targetState;
-    private StateTransitionCondition condition;
+    protected State targetState;
+    protected StateTransitionCondition condition;
 
+
+    public StateTransition(State targetState, StateTransitionCondition condition)
+    {
+        this.targetState = targetState;
+        this.condition = condition;
+    }
 
     public bool TryEnterState(out State state)
     {

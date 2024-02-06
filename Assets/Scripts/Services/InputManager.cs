@@ -43,7 +43,7 @@ public class InputManager : SingletoneComponent<InputManager>
         return Input.GetMouseButtonDown(0);
     }
 
-    public bool IsEvasionPressed()
+    public bool IsDashedPressed()
     {
         return Input.GetKeyDown(KeyCode.LeftShift); 
     }

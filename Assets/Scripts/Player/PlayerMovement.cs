@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 velocityVector = MovementVector * movementSpeed;
 
-        if (InputManager.Instance.IsEvasionPressed())
+        if (InputManager.Instance.IsDashedPressed())
         {
             isEvading = true;
             evasionCounter = 0f;
