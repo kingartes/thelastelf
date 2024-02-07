@@ -1,31 +1,32 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class StateContext : MonoBehaviour
+public class StateContext: MonoBehaviour
 {
-    private State currentState;
-    private List<StateTransition> transitionList;
+    protected State currentState;
+    protected Dictionary<Enum, State> stateList;
+
+    public Dictionary<Enum, State> StateList => stateList;
+
+    protected virtual void Initialize()
+    {
+        stateList = new Dictionary<Enum, State>();
+    }
+
+    protected virtual void Awake()
+    {
+        Initialize();
+    }
 
     protected virtual void Update()
     {
         currentState.OnUpdate();
-        CheckTransitions();
     }
 
-    private void CheckTransitions()
-    {
-        foreach (var transition in transitionList)
-        {
-            if (transition.TryEnterState(out State targetState)) {
-                EnterState(targetState);
-                return;
-            }
-        }
-    }
-
-    private void EnterState(State targetState)
+    public virtual void EnterState(State targetState)
     {
         currentState.Exit();
         currentState = targetState;

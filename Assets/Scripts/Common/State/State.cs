@@ -1,21 +1,43 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class State
+public abstract class State
 {
-  public virtual void Enter()
-    {
-        // State enter here
+    protected StateContext context;
+    protected List<StateTransition> transitionList;
+
+    public State(StateContext context) {
+        this.context = context;
+        transitionList = new List<StateTransition>();
     }
 
-   public virtual void OnUpdate()
+    public void SetupStansitions(List<StateTransition> transitions)
     {
-        /// State behavior here;
+        transitionList.AddRange(transitions);
     }
 
-    public virtual void Exit()
+    public abstract void Enter();
+
+    public virtual void OnUpdate()
     {
-        // State exit here;
+        Debug.Log(this);
+        CheckTransitions();
     }
+    public abstract void Exit();
+
+    protected virtual void CheckTransitions()
+    {
+        foreach (var transition in transitionList)
+        {
+            if (transition.TryEnterState(out State targetState))
+            {
+                context.EnterState(targetState);
+                return;
+            }
+        }
+    }
+
+
 }
