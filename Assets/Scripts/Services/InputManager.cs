@@ -38,7 +38,7 @@ public class InputManager : SingletoneComponent<InputManager>
         return Input.GetKeyDown(KeyCode.B);
     }
 
-    public bool IsLeftMouseButtonClicked()
+    public bool IsPrimaryActionButtonPressed()
     {
         return Input.GetMouseButtonDown(0);
     }
@@ -46,5 +46,19 @@ public class InputManager : SingletoneComponent<InputManager>
     public bool IsDashedPressed()
     {
         return Input.GetKeyDown(KeyCode.LeftShift); 
+    }
+
+    public bool IsEquipRangePressed() { 
+        return Input.GetKeyDown(KeyCode.Alpha1);
+    }
+
+    public bool IsEquipedMeelePressed()
+    {
+        return Input.GetKeyDown(KeyCode.Alpha2);
+    }
+
+    public bool IsParryPressed()
+    {
+        return Input.GetKeyDown (KeyCode.Space);
     }
 }

@@ -23,6 +23,7 @@ public class PlayerStateContext : StateContext
     private AnimationCurve dashDecayCurve;
 
     private float dashCooldownCounter = 0;
+    private CharacterController characterController;
 
     public Rigidbody RigidBodyComponet { get; private set; }
     public float MovementSpeed => movementSpeed;
@@ -33,9 +34,12 @@ public class PlayerStateContext : StateContext
     public float DashCooldownCounter => dashCooldownCounter;
     public AnimationCurve DashDecayCurve => dashDecayCurve;
 
+    public CharacterController CharacterController => characterController;
+
     protected override void Initialize()
     {
         base.Initialize();
+        characterController = GetComponent<CharacterController>();
         RigidBodyComponet = GetComponent<Rigidbody>();
         stateList[PlayerStateList.Idle] = new PlayerIdle(this);
         stateList[PlayerStateList.Walk] = new PlayerWalk(this);
