@@ -22,7 +22,6 @@ public abstract class State
 
     public virtual void OnUpdate()
     {
-        Debug.Log(this);
         CheckTransitions();
     }
     public abstract void Exit();

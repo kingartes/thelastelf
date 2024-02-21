@@ -37,7 +37,7 @@ public class BuildingSystem : MonoBehaviour
         {
             InstantiateBuildingBlock();
             buildingBlock.position = LevelGrid.Instance.GetWorldPosition(gridMousePosition);
-            if (InputManager.Instance.IsLeftMouseButtonClicked())
+            if (InputManager.Instance.IsPrimaryActionButtonPressed())
             {
                 PlaceBuilding(gridMousePosition);
             }

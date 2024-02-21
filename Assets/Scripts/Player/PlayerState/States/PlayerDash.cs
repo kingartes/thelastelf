@@ -6,6 +6,7 @@ public class PlayerDash : State
 {
     private float dashCounter;
     private PlayerStateContext playerContext;
+    private Vector2 dashDirection;
 
 
     public PlayerDash(PlayerStateContext playerContext) : base(playerContext)
@@ -16,6 +17,8 @@ public class PlayerDash : State
     public override void Enter()
     {
         dashCounter = 0;
+        dashDirection = InputManager.Instance.GetMovementDirectionVector();
+        Debug.Log("Dash!!!");
     }
 
     public override void Exit()
@@ -27,12 +30,12 @@ public class PlayerDash : State
     {
         base.OnUpdate();
         dashCounter += Time.deltaTime;
-        Vector2 movementDirection = InputManager.Instance.GetMovementDirectionVector();
-        Vector3 movementVector = new Vector3(movementDirection.x, 0, movementDirection.y);
+        Debug.Log(dashDirection);
+        Vector3 movementVector = new Vector3(dashDirection.x, 0, dashDirection.y);
 
         Vector3 velocityVector = movementVector * playerContext.MovementSpeed;
-        velocityVector += movementVector * playerContext.DashMultiplier * playerContext.DashDecayCurve.Evaluate(dashCounter / playerContext.DashDuration);
-        playerContext.RigidBodyComponet.velocity = velocityVector;
+        velocityVector += movementVector * playerContext.DashMultiplier * playerContext.DashDecayCurve.Evaluate(dashCounter / playerContext.DashDuration) ;
+        playerContext.CharacterController.Move(velocityVector * Time.deltaTime);
     }
 
     public bool IsTimeExpired()

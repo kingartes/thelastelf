@@ -10,6 +10,7 @@ public sealed class PlayerWalk : State
     public PlayerWalk(PlayerStateContext playerContext) : base(playerContext)
     {
         this.playerContext = playerContext;
+
     }
 
     public override void Enter()
@@ -28,9 +29,9 @@ public sealed class PlayerWalk : State
         Vector2 movementDirection = InputManager.Instance.GetMovementDirectionVector();
         Vector3 movementVector = new Vector3(movementDirection.x, 0, movementDirection.y);
 
-        Vector3 velocityVector = movementVector * playerContext.MovementSpeed;
-        playerContext.RigidBodyComponet.velocity = velocityVector;
-
+        Vector3 velocityVector = movementVector * playerContext.MovementSpeed * Time.deltaTime;
+        playerContext.CharacterController.Move(velocityVector);
+        //playerContext.transform.forward = Vector3.Slerp(playerContext.transform.forward, movementVector, Time.deltaTime);
     }
 
     public bool IsDashReady()
