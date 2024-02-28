@@ -1,42 +1,29 @@
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using UnityEngine;
 
-public sealed class PlayerWalk : State
+public class PlayerWalk: State
 {
+    private PlayerMovement playerMovement; 
 
-    private PlayerStateContext playerContext;
-
-    public PlayerWalk(PlayerStateContext playerContext) : base(playerContext)
+    public PlayerWalk(PlayerMovement playerMovement) : base(PlayerStateList.WALKING)
     {
-        this.playerContext = playerContext;
-
+        this.playerMovement = playerMovement;
+        Debug.Log(playerMovement);
     }
 
-    public override void Enter()
+    public override void OnLogic()
     {
-        
-    }
-
-    public override void Exit()
-    {
-        
-    }
-
-    public override void OnUpdate()
-    {
-        base.OnUpdate();
+        base.OnLogic();
         Vector2 movementDirection = InputManager.Instance.GetMovementDirectionVector();
         Vector3 movementVector = new Vector3(movementDirection.x, 0, movementDirection.y);
 
-        Vector3 velocityVector = movementVector * playerContext.MovementSpeed * Time.deltaTime;
-        playerContext.CharacterController.Move(velocityVector);
-        //playerContext.transform.forward = Vector3.Slerp(playerContext.transform.forward, movementVector, Time.deltaTime);
-    }
-
-    public bool IsDashReady()
-    {
-        return playerContext.DashCooldownCounter <= 0;
+        Vector3 velocityVector = movementVector * playerMovement.MovementSpeed * Time.deltaTime;
+        playerMovement.CharacterController.Move(velocityVector);
+        playerMovement.transform.forward = Vector3.Slerp(playerMovement.transform.forward, movementVector, Time.deltaTime * playerMovement.RotationSpeed);
     }
 
 }

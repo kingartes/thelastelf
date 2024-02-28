@@ -92,6 +92,8 @@ GameObject:
   - component: {fileID: 4738080721473553870}
   - component: {fileID: 771713553385412201}
   - component: {fileID: 8127032556209582926}
+  - component: {fileID: 5826798995671623182}
+  - component: {fileID: 8578368891796592799}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -164,7 +166,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3386665881363390609}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9857f0333a6fca64f8c9109111043781, type: 3}
   m_Name: 
@@ -201,14 +203,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3386665881363390609}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a510ccb989fda3642b6b137d0283120f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 10
-  dashDuration: 1
-  dashMultiplier: 10
+  dashDuration: 0.5
+  dashMultiplier: 15
   dashCooldown: 1
   dashDecayCurve:
     serializedVersion: 2
@@ -234,6 +236,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  rotationSpeed: 5
 --- !u!114 &6658396353569281510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -305,6 +308,61 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97a4647ce2dee88409e8d3ee68d61a2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5826798995671623182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3386665881363390609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ff1d5e1dad2be94181d258600945df5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parryingDuration: 0.3
+  parryingCooldown: 1
+--- !u!114 &8578368891796592799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3386665881363390609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4113425d20d98384fa7a250865091189, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSpeed: 10
+  dashDuration: 1
+  dashMultiplier: 5
+  dashCooldown: 1
+  dashDecayCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -0.10907666
+      outSlope: -0.10907666
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.08889987
+    - serializedVersion: 3
+      time: 1.0011597
+      value: -0.16385269
+      inSlope: -2.8725321
+      outSlope: -2.8725321
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.04159443
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  rotationSpeed: 3
 --- !u!1 &5248066079708585369
 GameObject:
   m_ObjectHideFlags: 0

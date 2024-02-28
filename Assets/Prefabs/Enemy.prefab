@@ -150,7 +150,8 @@ GameObject:
   - component: {fileID: 2618002003992277477}
   - component: {fileID: 4128014547390643976}
   - component: {fileID: 2029803346469111602}
-  m_Layer: 0
+  - component: {fileID: 4085484378267340050}
+  m_Layer: 7
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -188,7 +189,7 @@ CapsuleCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -230,14 +231,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2995609424071133681}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d003b6e92d751e64990a98a393f2bac4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemyMovementSpeed: 8
   chaseDistance: 3
-  attackDelay: 0.5
+  attackDelay: 1
   attackDamage: 40
   layerMask:
     serializedVersion: 2
@@ -269,6 +270,26 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 2, z: 0}
+--- !u!114 &4085484378267340050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2995609424071133681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44b4ecb6fcbcf4e499d2759d13f8674b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyMovementSpeed: 10
+  chaseDistance: 3
+  attackDelay: 0.5
+  attackDamage: 40
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  weapon: {fileID: 3624623598116948808}
 --- !u!1 &3543141841460272942
 GameObject:
   m_ObjectHideFlags: 0
@@ -371,7 +392,7 @@ GameObject:
   - component: {fileID: 8574681167394892929}
   - component: {fileID: 9216722683593814495}
   - component: {fileID: 4723946771852333531}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -529,7 +550,7 @@ GameObject:
   - component: {fileID: 288508315648537701}
   - component: {fileID: 3660084238664419195}
   - component: {fileID: 2232693310682581018}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -606,7 +627,7 @@ GameObject:
   - component: {fileID: 6474279857059834267}
   - component: {fileID: 8220858413553177048}
   - component: {fileID: 759000528983383751}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HealthUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -722,7 +743,7 @@ GameObject:
   - component: {fileID: 6009150771363278914}
   - component: {fileID: 5405132926139223168}
   - component: {fileID: 5696063428540649281}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -765,7 +786,7 @@ MeshRenderer:
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
-  m_LightProbeUsage: 1
+  m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0

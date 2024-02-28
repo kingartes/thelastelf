@@ -1,58 +1,53 @@
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using UnityEngine;
-
-
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField]
-    private float movementSpeed = 10;
-    [SerializeField]
-    private float evasionSpeed = 5f;
-    [SerializeField]
-    private AnimationCurve evasionCurve;
-    [SerializeField]
-    private float evasionTime = 1;
 
-    private Rigidbody rb;
+    [SerializeField]
+    private float movementSpeed = 10f;
+    [SerializeField]
+    private float dashDuration = 1f;
+    [SerializeField]
+    private float dashMultiplier = 5f;
+    [SerializeField]
+    private float dashCooldown = 1f;
+    [SerializeField]
+    private AnimationCurve dashDecayCurve;
+    [SerializeField]
+    private float rotationSpeed;
 
-    private bool isEvading;
-    private float evasionCounter = 0f;
+    private float dashCooldownCounter = 0;
+    private CharacterController characterController;
 
+    public float MovementSpeed => movementSpeed;
+    public float DashDuration => dashDuration;
+    public float DashMultiplier => dashMultiplier;
+    public float DashCooldown => dashCooldown;
 
-    public Vector3 MovementVector { get; private set; }
+    public float DashCooldownCounter => dashCooldownCounter;
+    public AnimationCurve DashDecayCurve => dashDecayCurve;
+
+    public CharacterController CharacterController => characterController;
+
+    public float RotationSpeed => rotationSpeed;
+    
+    private PlayerSM fsm;
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody>();
+        characterController = GetComponent<CharacterController>();
+        fsm = new PlayerSM(this);
+        fsm.Init();
     }
 
-    void Update()
+    private void Update()
     {
-        Vector2 movementDirection = InputManager.Instance.GetMovementDirectionVector();
-        MovementVector = new Vector3(movementDirection.x, 0, movementDirection.y);
-
-        Vector3 velocityVector = MovementVector * movementSpeed;
-
-        if (InputManager.Instance.IsDashedPressed())
-        {
-            isEvading = true;
-            evasionCounter = 0f;
-        }
-
-        if (isEvading)
-        {
-            evasionCounter += Time.deltaTime;
-           if (evasionCounter < evasionTime)
-            {
-                velocityVector *= evasionCurve.Evaluate(evasionCounter) * evasionSpeed;
-            } else
-            {
-                isEvading = false;
-            }
-        }
-
-        rb.velocity = velocityVector;
+        fsm.OnLogic();
     }
 }
+
