@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum EnemyStateList
+public enum EnemyStateList_Derprecated
 {
     Chase,
     Attack
 }
 
-public class EnemyStateContext : StateContext
+public class EnemyStateContext : StateContext_Deprecated
 {
     [SerializeField]
     private float enemyMovementSpeed = 10f;
@@ -49,26 +49,26 @@ public class EnemyStateContext : StateContext
         characterController = GetComponent<CharacterController>();
         PlayerStateContext player = FindAnyObjectByType<PlayerStateContext>();
         chaseTarget = player.transform;
-        stateList[EnemyStateList.Chase] = new EnemyChase(this);
-        stateList[EnemyStateList.Attack] = new EnemyAttack(this);
+        stateList[EnemyStateList_Derprecated.Chase] = new EnemyChase_Deprecated(this);
+        stateList[EnemyStateList_Derprecated.Attack] = new EnemyAttack_Deprecated(this);
 
 
-        currentState = stateList[EnemyStateList.Chase];
+        currentState = stateList[EnemyStateList_Derprecated.Chase];
 
-        List<StateTransition> chaseTransitions = new List<StateTransition> {
-            new StateTransition(
-                StateList[EnemyStateList.Attack],
-                new AttackCondition((EnemyChase)stateList[EnemyStateList.Chase])
+        List<StateTransition_Deprecated> chaseTransitions = new List<StateTransition_Deprecated> {
+            new StateTransition_Deprecated(
+                StateList[EnemyStateList_Derprecated.Attack],
+                new AttackCondition((EnemyChase_Deprecated)stateList[EnemyStateList_Derprecated.Chase])
             )
         };       
-        List<StateTransition> attackTransitions = new List<StateTransition> {
-            new StateTransition(
-                StateList[EnemyStateList.Chase],
-                new ChaseCondition((EnemyAttack)stateList[EnemyStateList.Attack])
+        List<StateTransition_Deprecated> attackTransitions = new List<StateTransition_Deprecated> {
+            new StateTransition_Deprecated(
+                StateList[EnemyStateList_Derprecated.Chase],
+                new ChaseCondition((EnemyAttack_Deprecated)stateList[EnemyStateList_Derprecated.Attack])
             )
         };
 
-        stateList[EnemyStateList.Chase].SetupStansitions(chaseTransitions);
-        stateList[EnemyStateList.Attack].SetupStansitions(attackTransitions);
+        stateList[EnemyStateList_Derprecated.Chase].SetupStansitions(chaseTransitions);
+        stateList[EnemyStateList_Derprecated.Attack].SetupStansitions(attackTransitions);
     }
 }

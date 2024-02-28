@@ -66,6 +66,7 @@ public class PlayerAttack : MonoBehaviour
         if (attackCounter == 0)
         {
             Projectile projectile = Instantiate(projectilePrefab, shootPoint);
+            projectile.transform.parent = null;
             Rigidbody projectileRigidBody = projectile.GetComponent<Rigidbody>();
             projectile.Damage = shootDamage;
             Vector3 mouseWorldPosition = MouseWorld.GetPosition();
@@ -73,6 +74,7 @@ public class PlayerAttack : MonoBehaviour
             Vector3 shootDirection = mouseWorldPosition - shootPoint.position;
             projectileRigidBody.useGravity = false;
             projectileRigidBody.velocity = shootDirection * projectileSpeed;
+            Debug.Log("Shooting");
             Destroy(projectile.gameObject, 3f);
             attackCounter = 1 / attackSpeed;
         }
