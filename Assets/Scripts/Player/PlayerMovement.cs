@@ -7,7 +7,6 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-
     [SerializeField]
     private float movementSpeed = 10f;
     [SerializeField]
@@ -21,13 +20,19 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float rotationSpeed;
 
+    [SerializeField]
+    private Animator animator;
+
     private float dashCooldownCounter = 0;
     private CharacterController characterController;
+
+    public const string ANIMATION_RUNNING = "runing";
 
     public float MovementSpeed => movementSpeed;
     public float DashDuration => dashDuration;
     public float DashMultiplier => dashMultiplier;
     public float DashCooldown => dashCooldown;
+    public Animator Animator => animator;
 
     public float DashCooldownCounter => dashCooldownCounter;
     public AnimationCurve DashDecayCurve => dashDecayCurve;

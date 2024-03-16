@@ -57,7 +57,7 @@ public class PlayerAttack : MonoBehaviour
     private void HandleMeele()
     {
         meeleWeapon.gameObject.SetActive(true);
-        meeleWeapon.Attack();
+        meeleWeapon.Attack(null);
 
     }
 

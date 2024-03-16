@@ -15,6 +15,16 @@ public class PlayerWalk: State
         Debug.Log(playerMovement);
     }
 
+    public override void OnEnter()
+    {
+        playerMovement.Animator.SetBool(PlayerMovement.ANIMATION_RUNNING, true);
+    }
+
+    public override void OnExit()
+    {
+        playerMovement.Animator.SetBool(PlayerMovement.ANIMATION_RUNNING, false);
+    }
+
     public override void OnLogic()
     {
         base.OnLogic();
