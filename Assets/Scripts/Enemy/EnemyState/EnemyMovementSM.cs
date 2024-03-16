@@ -24,9 +24,9 @@ public class EnemyMovementSM : StateMachine<EnemyAI>
         enemyAIStates.Add(EnemyStateList.CHASE, new EnemyChase(enemyAI));
         enemyAIStates.Add(EnemyStateList.PATROL, new EnemyPatrol(enemyAI));
 
-        AddTransition(enemyAIStates[EnemyStateList.IDLE], enemyAIStates[EnemyStateList.PATROL], () => !enemyAI.IsTargetInChaseRange());
-        AddTransition(enemyAIStates[EnemyStateList.PATROL], enemyAIStates[EnemyStateList.CHASE], () => enemyAI.IsTargetInChaseRange());
-        AddTransition(enemyAIStates[EnemyStateList.CHASE], enemyAIStates[EnemyStateList.PATROL], () => !enemyAI.IsTargetInChaseRange());
+        AddTransition(enemyAIStates[EnemyStateList.IDLE], enemyAIStates[EnemyStateList.PATROL], () => !enemyAI.IsTargetInVision());
+        AddTransition(enemyAIStates[EnemyStateList.PATROL], enemyAIStates[EnemyStateList.CHASE], () => enemyAI.IsTargetInVision());
+        AddTransition(enemyAIStates[EnemyStateList.CHASE], enemyAIStates[EnemyStateList.PATROL], () => !enemyAI.IsTargetInVision());
         return enemyAIStates;
     }
 

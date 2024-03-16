@@ -18,7 +18,7 @@ public class EnemyAttack : State
 
     public override void OnEnter()
     {
-        attackCounter = enemyAI.AttackDelay;
+        attackCounter = enemyAI.Weapon.AttackInterval;
     }
 
     public override void OnLogic()
@@ -28,19 +28,9 @@ public class EnemyAttack : State
 
         if (attackCounter <= 0)
         {
-            /* Debug.Log("attack");
-             Collider[] collisions = Physics.OverlapSphere(enemyContext.transform.position, enemyContext.ChaseDistance, enemyContext.LayerMask);
-             foreach (Collider collision in collisions)
-             {
-                 if (collision.gameObject.TryGetComponent<Health>(out Health playerHealth))
-                 {
-                     playerHealth.TakeDamage(enemyContext.AttackDamage);
-                     attackCounter = enemyContext.AttackDelay;
-                 }
-             }*/
             enemyAI.Weapon.gameObject.SetActive(true);
-            enemyAI.Weapon.Attack();
-            attackCounter = enemyAI.AttackDelay;
+            enemyAI.Weapon.Attack(enemyAI.ChaseTarget);
+            attackCounter = enemyAI.Weapon.AttackInterval;
         }
     }
 

@@ -12,7 +12,6 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        playerStarving.onStarveExpired += PlayerStarving_onStarveExpired;
         gameOverUI.gameObject.SetActive(false);
     }
 

@@ -21,8 +21,8 @@ public class EnemyAttackSM : StateMachine<EnemyAI>
         enemyAIStates.Add(EnemyStateList.IDLE, new EnemyIdle());
         enemyAIStates.Add(EnemyStateList.ATTACK, new EnemyAttack(enemyAI));
 
-        AddTransition(enemyAIStates[EnemyStateList.IDLE], enemyAIStates[EnemyStateList.ATTACK], () => enemyAI.IsInMeeleAttackRange());
-        AddTransition(enemyAIStates[EnemyStateList.ATTACK], enemyAIStates[EnemyStateList.IDLE], () => !enemyAI.IsInMeeleAttackRange());
+        AddTransition(enemyAIStates[EnemyStateList.IDLE], enemyAIStates[EnemyStateList.ATTACK], () => enemyAI.IsInAttackRange());
+        AddTransition(enemyAIStates[EnemyStateList.ATTACK], enemyAIStates[EnemyStateList.IDLE], () => !enemyAI.IsInAttackRange());
         return enemyAIStates;
     }
 }

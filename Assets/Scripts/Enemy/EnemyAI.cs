@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
+[RequireComponent(typeof(VisionSensor))]
 public class EnemyAI : MonoBehaviour
 {
     [SerializeField]
@@ -20,7 +21,7 @@ public class EnemyAI : MonoBehaviour
     private LayerMask layerMask;
 
     [SerializeField]
-    private MeeleWeapon weapon;
+    private BaseWeapon weapon;
 
     [SerializeField]
     private float chaseAttackDistance;
@@ -47,20 +48,28 @@ public class EnemyAI : MonoBehaviour
 
     public List<PatrolPoint> PatrolPoints => patrolPoints;
 
-    public MeeleWeapon Weapon => weapon;
+    public BaseWeapon Weapon => weapon;
 
-    private EnemyMovementSM movementFsm;
-    private EnemyAttackSM attackFsm;
+    protected EnemyMovementSM movementFsm;
+    protected EnemyAttackSM attackFsm;
+    private VisionSensor visionSensor;
+
+    protected virtual void SetupFSM()
+    {
+        movementFsm = new EnemyMovementSM(this);
+        movementFsm.Init();
+        attackFsm = new EnemyAttackSM(this);
+        attackFsm.Init();
+    }
 
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
         Player player = FindAnyObjectByType<Player>();
         chaseTarget = player.transform;
-        movementFsm = new EnemyMovementSM(this);
-        movementFsm.Init();
-        attackFsm = new EnemyAttackSM(this);
-        attackFsm.Init();
+        SetupFSM();
+        visionSensor = GetComponent<VisionSensor>();
+        visionSensor.Init(player);
     }
 
     private void Update()
@@ -69,11 +78,11 @@ public class EnemyAI : MonoBehaviour
         attackFsm.OnLogic();
     }
 
-    public bool IsInMeeleAttackRange()
+    public bool IsInAttackRange()
     {
         Vector3 targetPosition = ChaseTarget.position;
         Vector3 position = transform.position;
-        return Vector3.Distance(position, targetPosition) <= ChaseDistance;
+        return Vector3.Distance(position, targetPosition) <= weapon.AttackRange;
     }
 
     public bool IsInChaseAttackRange()
@@ -83,9 +92,9 @@ public class EnemyAI : MonoBehaviour
         return Vector3.Distance(position, targetPosition) <= ChaseAttackDistance;
     }
 
-    public bool IsTargetInChaseRange()
+    public bool IsTargetInVision()
     {
-        return Vector3.Distance(transform.position, chaseTarget.position) <= aggressionRadius;
+        return visionSensor.IsPlayerVisible;
     }
 
     public void OnDrawGizmosSelected()

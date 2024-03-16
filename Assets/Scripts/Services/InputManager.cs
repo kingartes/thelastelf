@@ -40,7 +40,7 @@ public class InputManager : SingletoneComponent<InputManager>
 
     public bool IsPrimaryActionButtonPressed()
     {
-        return Input.GetMouseButtonDown(0);
+        return Input.GetMouseButtonDown(0) && !Craft.Instance.IsEnabled;
     }
 
     public bool IsDashedPressed()
@@ -60,5 +60,10 @@ public class InputManager : SingletoneComponent<InputManager>
     public bool IsParryPressed()
     {
         return Input.GetKeyDown (KeyCode.Space);
+    }
+
+    public bool IsCraftPressed()
+    {
+        return Input.GetKeyDown(KeyCode.C);
     }
 }

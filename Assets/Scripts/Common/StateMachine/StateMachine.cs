@@ -35,7 +35,7 @@ public class StateMachine<TEntity> where TEntity: MonoBehaviour
 
     public virtual void OnLogic()
     {
-        Debug.Log(CurrentState);
+      //  Debug.Log(CurrentState);
         CheckTransitions();
         stateStack.Peek().OnLogic();
     }
