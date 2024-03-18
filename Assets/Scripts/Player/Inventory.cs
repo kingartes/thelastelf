@@ -12,9 +12,9 @@ public class Inventory : MonoBehaviour
 
     public Dictionary<string, int> ResourceList => resources;
 
-    private List<GameObject> items = new List<GameObject> { };
+    private Dictionary<GameObject, int> items = new Dictionary<GameObject, int> { };
 
-    public List<GameObject> Items => items;
+    public Dictionary<GameObject, int> Items => items;
 
     public void AddResource(string resourceType, int amount)
     {
@@ -30,7 +30,13 @@ public class Inventory : MonoBehaviour
 
     public void AddItem(GameObject item)
     {
-        items.Add(item);
+        if (!items.ContainsKey(item))
+        {
+            items.Add(item, 1);
+        } else
+        {
+            items[item] += 1;
+        }
         OnItemsUpdated?.Invoke(this, EventArgs.Empty);
     }
 

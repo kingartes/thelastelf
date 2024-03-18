@@ -8,8 +8,8 @@ public class InventoryItemUI : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI itemLabel;
 
-    public void SetItemLabel(string name)
+    public void SetItemLabel(string name, int amount)
     {
-        itemLabel.text = name;
+        itemLabel.text = $@"{name}({amount})";
     }
 }

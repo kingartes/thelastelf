@@ -29,9 +29,9 @@ public class InventoryUI : MonoBehaviour
     private void Inventory_OnItemsUpdated(object sender, EventArgs e)
     {
         CleanItems();
-        foreach (GameObject item in inventory.Items)
+        foreach (KeyValuePair<GameObject, int> item in inventory.Items)
         {
-            RenderItem(item);
+            RenderItem(item.Key, item.Value);
         }
     }
 
@@ -69,9 +69,9 @@ public class InventoryUI : MonoBehaviour
     }
 
 
-    private void RenderItem(GameObject item)
+    private void RenderItem(GameObject item, int amount)
     {
         InventoryItemUI itemUI = Instantiate(inventoryItemTemplate, itemBlock);
-        itemUI.SetItemLabel(item.ToString());
+        itemUI.SetItemLabel(item.ToString(), amount);
     }
 }
