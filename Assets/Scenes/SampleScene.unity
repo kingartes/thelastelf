@@ -3735,14 +3735,19 @@ PrefabInstance:
       objectReference: {fileID: 306505862}
     - target: {fileID: 6333113675950213715, guid: bccc62378717dd84e962dab743ac8e9e,
         type: 3}
+      propertyPath: patrolPoints.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6333113675950213715, guid: bccc62378717dd84e962dab743ac8e9e,
+        type: 3}
       propertyPath: patrolPoints.Array.data[0]
       value: 
-      objectReference: {fileID: 1132540576}
+      objectReference: {fileID: 97750041}
     - target: {fileID: 6333113675950213715, guid: bccc62378717dd84e962dab743ac8e9e,
         type: 3}
       propertyPath: patrolPoints.Array.data[1]
       value: 
-      objectReference: {fileID: 97750041}
+      objectReference: {fileID: 1260132012}
     - target: {fileID: 6333113675950213715, guid: bccc62378717dd84e962dab743ac8e9e,
         type: 3}
       propertyPath: patrolPoints.Array.data[2]
