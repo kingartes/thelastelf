@@ -31,6 +31,7 @@ public class EnemyPatrol : State
             Vector3 position = enemyAI.transform.position;
             Vector3 targetDirection = (targetPosition - position).normalized;
             targetDirection.y = 0;
+            targetPosition.y = position.y;
             if (Vector3.Distance(position, targetPosition) > 0.5)
             {
                 enemyAI.CharacterController.Move(targetDirection * enemyAI.EnemyMovementSpeed * Time.deltaTime);
