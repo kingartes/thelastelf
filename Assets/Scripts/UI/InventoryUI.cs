@@ -1,3 +1,4 @@
+using Assets.Scripts.Weapon;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -73,5 +74,20 @@ public class InventoryUI : MonoBehaviour
     {
         InventoryItemUI itemUI = Instantiate(inventoryItemTemplate, itemBlock);
         itemUI.SetItemLabel(item.ToString(), amount);
+        if (item.TryGetComponent<MeeleWeapon>(out MeeleWeapon weapon))
+        {
+            Action equipMeeleeCallback = () =>
+            {
+                inventory.EquipMeeleWeapon(weapon);
+            };
+            itemUI.SetEquipButton(equipMeeleeCallback);
+        }
+        if (item.TryGetComponent<Arrow>(out Arrow arrow))
+        {
+            Action equipArrowCallback = () => {
+                inventory.EquipeArrow(item);
+            };
+            itemUI.SetEquipButton(equipArrowCallback);
+        }
     }
 }
