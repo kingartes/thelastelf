@@ -8,13 +8,13 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]
-    private float movementSpeed = 10f;
+    public float movementSpeed = 10f;
     [SerializeField]
-    private float dashDuration = 1f;
+    public float dashDuration = 1f;
     [SerializeField]
-    private float dashMultiplier = 5f;
+    public float dashMultiplier = 5f;
     [SerializeField]
-    private float dashCooldown = 1f;
+    public float dashCooldown = 1f;
     [SerializeField]
     private AnimationCurve dashDecayCurve;
     [SerializeField]
