@@ -22,7 +22,7 @@ public class PlayerAttack : MonoBehaviour
     private float projectileSpeed;
 
     [SerializeField]
-    private float attackSpeed;
+    public float attackSpeed;
 
     [SerializeField]
     private Transform shootPoint;
@@ -34,6 +34,8 @@ public class PlayerAttack : MonoBehaviour
 
     private Inventory inventory;
     private Chargeble chargeble;
+
+    private EssenceSystem ES;
 
     private float attackCounter = 0;
 
@@ -51,6 +53,7 @@ public class PlayerAttack : MonoBehaviour
         attackHandlers = new Dictionary<WeaponType, Action>();
         attackHandlers[WeaponType.Sword] = HandleMeele;
         attackHandlers[WeaponType.Bow] = HandleRanged;
+        ES = GetComponent<EssenceSystem>();
     }
 
     private void Update()
@@ -108,6 +111,7 @@ public class PlayerAttack : MonoBehaviour
             inventory.ConsumeArrow();
             Destroy(projectile.gameObject, 3f);
             attackCounter = 1 / attackSpeed;
+            ES.EssenceChange(-5);
         }
     }
 }

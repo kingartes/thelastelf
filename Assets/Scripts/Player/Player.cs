@@ -14,12 +14,14 @@ public class Player : MonoBehaviour, IHit
     private float parryingCooldownCounter = 0;
 
     private Health health;
+    private EssenceSystem ES;
 
     private bool isParrying;
 
     private void Awake()
     {
         health = GetComponent<Health>();
+        ES = GetComponent<EssenceSystem>();
     }
 
     private void Update()
@@ -49,6 +51,7 @@ public class Player : MonoBehaviour, IHit
         if (!isParrying)
         {
             health.TakeDamage(damage);
+            ES.EssenceChange(-5);
         } else
         {
             Debug.Log("Parried");
