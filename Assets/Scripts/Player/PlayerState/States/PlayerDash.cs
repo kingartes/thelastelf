@@ -30,7 +30,6 @@ public class PlayerDash : State
     {
         base.OnLogic();
         dashCounter += Time.deltaTime;
-        Debug.Log(dashDirection);
         Vector3 movementVector = new Vector3(dashDirection.x, 0, dashDirection.y);
 
         Vector3 velocityVector = movementVector * playerMovement.MovementSpeed;

@@ -1,8 +1,11 @@
+using Assets.Scripts.Weapon;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(WeaponManager))]
+[RequireComponent(typeof(Inventory))]
 public class PlayerAttack : MonoBehaviour
 {
     [SerializeField]
@@ -12,7 +15,7 @@ public class PlayerAttack : MonoBehaviour
     private float projectileSpeed;
 
     [SerializeField]
-    public float attackSpeed;
+    private float attackSpeed;
 
     [SerializeField]
     private Transform shootPoint;
@@ -20,24 +23,25 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField]
     private float shootDamage;
 
-    [SerializeField]
-    private MeeleWeapon meeleWeapon;
-
-    [SerializeField]
     private WeaponManager weaponManager;
 
-    private EssenceSystem ES;
+    private Inventory inventory;
 
     private float attackCounter = 0;
 
     private Dictionary<WeaponType, Action> attackHandlers;
+
+    private void Awake()
+    {
+        weaponManager = GetComponent<WeaponManager>();
+        inventory = GetComponent<Inventory>();
+    }
 
     private void Start()
     {
         attackHandlers = new Dictionary<WeaponType, Action>();
         attackHandlers[WeaponType.Sword] = HandleMeele;
         attackHandlers[WeaponType.Bow] = HandleRanged;
-        ES = GetComponent<EssenceSystem>();
     }
 
     private void Update()
@@ -59,30 +63,29 @@ public class PlayerAttack : MonoBehaviour
 
     private void HandleMeele()
     {
-        meeleWeapon.gameObject.SetActive(true);
-        meeleWeapon.Attack(null);
-
+        weaponManager.EquipedMeeleWeapon.gameObject.SetActive(true);
+        weaponManager.EquipedMeeleWeapon.Attack(null);
     }
 
     private void HandleRanged()
     {
-        if (attackCounter == 0)
+        if (attackCounter == 0 && inventory.ArrowsCount > 0)
         {
             Projectile projectile = Instantiate(projectilePrefab, shootPoint);
+            Arrow arrowType = inventory.GetEquipedArrow();
             projectile.transform.parent = null;
             Rigidbody projectileRigidBody = projectile.GetComponent<Rigidbody>();
-            projectile.Damage = shootDamage;
+            projectile.Damage = shootDamage + arrowType.Damage;
             Vector3 mouseWorldPosition = MouseWorld.GetPosition();
             mouseWorldPosition.y = shootPoint.position.y;
             Vector3 shootDirection = mouseWorldPosition - shootPoint.position;
             projectileRigidBody.useGravity = false;
             projectileRigidBody.velocity = shootDirection * projectileSpeed;
             Debug.Log("Shooting");
+            Debug.Log($"Damage: {shootDamage + arrowType.Damage}");
+            inventory.ConsumeArrow();
             Destroy(projectile.gameObject, 3f);
             attackCounter = 1 / attackSpeed;
-            ES.EssenceChange(-5);
         }
-
-
     }
 }
