@@ -6,6 +6,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(WeaponManager))]
 [RequireComponent(typeof(Inventory))]
+[RequireComponent(typeof(Chargeble))]
 public class PlayerAttack : MonoBehaviour
 {
     [SerializeField]
@@ -26,6 +27,7 @@ public class PlayerAttack : MonoBehaviour
     private WeaponManager weaponManager;
 
     private Inventory inventory;
+    private Chargeble chargeble;
 
     private float attackCounter = 0;
 
@@ -35,6 +37,7 @@ public class PlayerAttack : MonoBehaviour
     {
         weaponManager = GetComponent<WeaponManager>();
         inventory = GetComponent<Inventory>();
+        chargeble = GetComponent<Chargeble>();
     }
 
     private void Start()
@@ -58,6 +61,11 @@ public class PlayerAttack : MonoBehaviour
         {
             attackHandlers[weaponManager.EquipedWeapon].Invoke();
         }
+        if (InputManager.Instance.IsPrimaryActionReleased() && weaponManager.EquipedWeapon == WeaponType.Bow)
+        {
+            chargeble.SetCharging(false);
+            HandleShoot();
+        }
         attackCounter = Mathf.Clamp(attackCounter - Time.deltaTime, 0, float.MaxValue);
     }
 
@@ -69,18 +77,24 @@ public class PlayerAttack : MonoBehaviour
 
     private void HandleRanged()
     {
+        chargeble.SetCharging(true);
+
+    }
+
+    private void HandleShoot()
+    {
+        float chargeMultiplier = chargeble.GetChargeMultiplier();
         if (attackCounter == 0 && inventory.ArrowsCount > 0)
         {
             Projectile projectile = Instantiate(projectilePrefab, shootPoint);
             Arrow arrowType = inventory.GetEquipedArrow();
             projectile.transform.parent = null;
             Rigidbody projectileRigidBody = projectile.GetComponent<Rigidbody>();
-            projectile.Damage = shootDamage + arrowType.Damage;
-            Vector3 mouseWorldPosition = MouseWorld.GetPosition();
-            mouseWorldPosition.y = shootPoint.position.y;
-            Vector3 shootDirection = mouseWorldPosition - shootPoint.position;
+            projectile.Damage = (shootDamage + arrowType.Damage) * chargeMultiplier;
+
+            Vector3 shootDirection = transform.forward;
             projectileRigidBody.useGravity = false;
-            projectileRigidBody.velocity = shootDirection * projectileSpeed;
+            projectileRigidBody.velocity = shootDirection * projectileSpeed * chargeMultiplier;
             Debug.Log("Shooting");
             Debug.Log($"Damage: {shootDamage + arrowType.Damage}");
             inventory.ConsumeArrow();

@@ -53,6 +53,15 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         fsm.OnLogic();
+        HandleRotation();
+    }
+
+    private void HandleRotation()
+    {
+        Vector3 mouseWorldPosition = MouseWorld.GetPosition();
+        Vector3 directionVector = mouseWorldPosition - transform.position;
+
+        transform.forward = Vector3.Slerp(transform.forward, directionVector, Time.deltaTime * RotationSpeed);
     }
 }
 

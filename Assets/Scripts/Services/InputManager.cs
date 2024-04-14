@@ -43,6 +43,11 @@ public class InputManager : SingletoneComponent<InputManager>
         return Input.GetMouseButtonDown(0) && !Craft.Instance.IsEnabled;
     }
 
+    public bool IsPrimaryActionReleased()
+    {
+        return Input.GetMouseButtonUp(0);
+    }
+
     public bool IsDashedPressed()
     {
         return Input.GetKeyDown(KeyCode.LeftShift); 
