@@ -31,6 +31,7 @@ public class EssenceSystem : MonoBehaviour
         Timer += Time.deltaTime;
 
         EssenceTimer();
+        PlayerStatsChange();
     }
 
     public void EssenceTimer()

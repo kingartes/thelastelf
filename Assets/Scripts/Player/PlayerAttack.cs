@@ -15,7 +15,7 @@ public class PlayerAttack : MonoBehaviour
     private float projectileSpeed;
 
     [SerializeField]
-    private float attackSpeed;
+    public float attackSpeed;
 
     [SerializeField]
     private Transform shootPoint;
