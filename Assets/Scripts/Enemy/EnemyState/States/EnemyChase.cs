@@ -13,17 +13,6 @@ public class EnemyChase : State
     {
         this.enemyAI = enemyAI;
     }
-
-    public override void OnEnter()
-    {
-        enemyAI.Animator.SetBool("isWalking", true);
-    }
-
-    public override void OnExit()
-    {
-        enemyAI.Animator.SetBool("isWalking", true);
-    }
-
     public override void OnLogic()
     {
         base.OnLogic();
@@ -35,7 +24,7 @@ public class EnemyChase : State
         //enemyContext.RigidbodyComponent.velocity = targetDirection * enemyContext.EnemyMovementSpeed;
 
         enemyAI.CharacterController.Move(targetDirection * enemyAI.EnemyMovementSpeed * Time.deltaTime);
-        enemyAI.transform.forward = Vector3.Lerp(enemyAI.transform.forward, targetDirection, Time.deltaTime * 3);
+        enemyAI.transform.forward = Vector3.Lerp(enemyAI.transform.forward, targetDirection, Time.deltaTime * 20);
 
         /* if (Physics.Raycast(enemyContext.transform.position, targetDirection, enemyContext.ChaseDistance - 0.1f, enemyContext.LayerMask))
          {
