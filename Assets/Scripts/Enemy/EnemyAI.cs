@@ -27,6 +27,9 @@ public class EnemyAI : MonoBehaviour
     private float chaseAttackDistance;
 
     [SerializeField]
+    private Animator animator;
+
+    [SerializeField]
     private List<PatrolPoint> patrolPoints;
     [SerializeField]
     private float aggressionRadius = 10;
@@ -45,6 +48,8 @@ public class EnemyAI : MonoBehaviour
     public float ChaseDistance => chaseDistance;
     public float ChaseAttackDistance => chaseAttackDistance;
     public Transform ChaseTarget => chaseTarget;
+
+    public Animator Animator => animator;
 
     public List<PatrolPoint> PatrolPoints => patrolPoints;
 

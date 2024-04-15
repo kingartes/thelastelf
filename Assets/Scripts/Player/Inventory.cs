@@ -16,6 +16,9 @@ public class Inventory : MonoBehaviour
     [SerializeField]
     private GameObject arrow;
 
+    [SerializeField]
+    private int initialArrows = 40;
+
     private GameObject selectedArrowType;
 
     private Dictionary<string, int> resources = new Dictionary<string, int>();
@@ -31,6 +34,7 @@ public class Inventory : MonoBehaviour
     private void Awake()
     {
         selectedArrowType = arrow;
+        items.Add(selectedArrowType, initialArrows);
     }
 
     public void AddResource(string resourceType, int amount)

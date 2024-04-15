@@ -26,8 +26,10 @@ public class EnemyAttack : State
         base.OnLogic();
         attackCounter -= Time.deltaTime;
 
+
         if (attackCounter <= 0)
         {
+            enemyAI.Animator.SetTrigger("attack");
             enemyAI.Weapon.gameObject.SetActive(true);
             enemyAI.Weapon.Attack(enemyAI.ChaseTarget);
             attackCounter = enemyAI.Weapon.AttackInterval;
