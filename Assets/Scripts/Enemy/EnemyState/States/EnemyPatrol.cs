@@ -35,7 +35,7 @@ public class EnemyPatrol : State
             if (Vector3.Distance(position, targetPosition) > 0.5)
             {
                 enemyAI.CharacterController.Move(targetDirection * enemyAI.EnemyMovementSpeed * Time.deltaTime);
-                enemyAI.transform.forward = Vector3.Lerp(enemyAI.transform.forward, targetDirection, Time.deltaTime * 3);
+                enemyAI.transform.forward = Vector3.Lerp(enemyAI.transform.forward, targetDirection, Time.deltaTime * 20);
             } else
             {
                 currentPatrolPointIndex = ++currentPatrolPointIndex % enemyAI.PatrolPoints.Count;

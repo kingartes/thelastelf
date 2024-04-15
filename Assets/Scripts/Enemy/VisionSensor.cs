@@ -6,10 +6,10 @@ using UnityEngine;
 public class VisionSensor : MonoBehaviour
 {
     [SerializeField]
-    private float visionRadius = 10f;
+    public float visionRadius = 10f;
 
     [SerializeField]
-    private float visionAngle = 90f;
+    public float visionAngle = 90f;
 
     [SerializeField]
     private float scanInterval = 0.2f;

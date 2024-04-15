@@ -10,6 +10,7 @@ public class InventoryResourceItemUI : MonoBehaviour
 
     public void SetLabel(string type, int amount)
     {
-        resourceLabel.text = $"{type}: {amount}";
+        //resourceLabel.text = $"{type}: {amount}";
+        resourceLabel.text = $"{amount}";
     }
 }
