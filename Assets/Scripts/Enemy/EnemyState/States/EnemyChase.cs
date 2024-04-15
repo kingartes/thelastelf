@@ -13,6 +13,17 @@ public class EnemyChase : State
     {
         this.enemyAI = enemyAI;
     }
+
+    public override void OnEnter()
+    {
+        enemyAI.Animator.SetBool("isWalking", true);
+    }
+
+    public override void OnExit()
+    {
+        enemyAI.Animator.SetBool("isWalking", true);
+    }
+
     public override void OnLogic()
     {
         base.OnLogic();
