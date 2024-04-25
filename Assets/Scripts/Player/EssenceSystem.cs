@@ -19,6 +19,8 @@ public class EssenceSystem : MonoBehaviour
     public float essenceCapacity = 1000;
     public float currentEssence;
     private float Timer = 0;
+
+    public GameObject Indicator;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +30,7 @@ public class EssenceSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Cursor.visible = false;
         Timer += Time.deltaTime;
 
         EssenceTimer();
@@ -59,6 +62,7 @@ public class EssenceSystem : MonoBehaviour
             PM.dashCooldown = 0.75f;
 
             PA.attackSpeed = 1.5f;
+            Indicator.SetActive(true);
         }
         else
         {
