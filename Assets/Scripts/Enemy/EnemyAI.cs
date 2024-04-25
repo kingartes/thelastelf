@@ -99,6 +99,10 @@ public class EnemyAI : MonoBehaviour
 
     public bool IsTargetInVision()
     {
+        if (visionSensor.IsPlayerVisible)
+        {
+            Debug.Log("Player in vision");
+        }
         return visionSensor.IsPlayerVisible;
     }
 

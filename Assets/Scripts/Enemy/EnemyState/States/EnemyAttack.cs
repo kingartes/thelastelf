@@ -27,6 +27,8 @@ public class EnemyAttack : State
         attackCounter -= Time.deltaTime;
 
 
+       
+
         if (attackCounter <= 0)
         {
             enemyAI.Animator.SetTrigger("attack");
