@@ -12,12 +12,6 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField]
     private Projectile projectilePrefab;
 
-    [SerializeField] 
-    private PlayerAttackAnimator attackAnimator;
-
-    [SerializeField] 
-    private Animator animator;
-
     [SerializeField]
     private float projectileSpeed;
 
@@ -84,10 +78,8 @@ public class PlayerAttack : MonoBehaviour
         weaponManager.EquipedMeeleWeapon.Attack(null);
     }
 
-
     private void HandleRanged()
     {
-        animator.SetTrigger("Shoot");
         chargeble.SetCharging(true);
 
     }
@@ -97,7 +89,6 @@ public class PlayerAttack : MonoBehaviour
         float chargeMultiplier = chargeble.GetChargeMultiplier();
         if (attackCounter == 0 && inventory.ArrowsCount > 0)
         {
-            attackAnimator.ResumeAttackAnimation();
             Projectile projectile = Instantiate(projectilePrefab, shootPoint);
             Arrow arrowType = inventory.GetEquipedArrow();
             projectile.transform.parent = null;
@@ -107,7 +98,8 @@ public class PlayerAttack : MonoBehaviour
             Vector3 shootDirection = transform.forward;
             projectileRigidBody.useGravity = false;
             projectileRigidBody.velocity = shootDirection * projectileSpeed * chargeMultiplier;
- 
+            Debug.Log("Shooting");
+            Debug.Log($"Damage: {shootDamage + arrowType.Damage}");
             inventory.ConsumeArrow();
             Destroy(projectile.gameObject, 3f);
             attackCounter = 1 / attackSpeed;

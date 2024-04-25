@@ -19,14 +19,7 @@ public class EnemyPatrol : State
     {
         base.OnEnter();
         currentPatrolPointIndex = 0;
-        enemyAI.Animator.SetBool("isWalking", true);
     }
-
-    public override void OnExit()
-    {
-        enemyAI.Animator.SetBool("isWalking", true);
-    }
-
 
     public override void OnLogic()
     {
