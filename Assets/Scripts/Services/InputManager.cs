@@ -71,4 +71,9 @@ public class InputManager : SingletoneComponent<InputManager>
     {
         return Input.GetKeyDown(KeyCode.C);
     }
+
+    public bool SwapArrowPressed()
+    {
+        return Input.GetKeyDown(KeyCode.E);
+    }
 }

@@ -12,7 +12,6 @@ public class PlayerWalk: State
     public PlayerWalk(PlayerMovement playerMovement) : base(PlayerStateList.WALKING)
     {
         this.playerMovement = playerMovement;
-        Debug.Log(playerMovement);
     }
 
     public override void OnEnter()

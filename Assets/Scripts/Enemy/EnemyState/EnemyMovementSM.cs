@@ -31,5 +31,9 @@ public class EnemyMovementSM : StateMachine<EnemyAI>
     }
 
 
-
+    public override void OnLogic()
+    {
+        base.OnLogic();
+        Debug.Log(CurrentState);
+    }
 }

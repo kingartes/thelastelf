@@ -16,7 +16,7 @@ public class StateMachine<TEntity> where TEntity: MonoBehaviour
     protected string entryStateName;
 
 
-    private State CurrentState => stateStack.Peek();
+    protected State CurrentState => stateStack.Peek();
     private List<StateTransition> CurrentStateTransition => transitions.Where(t => t.SourceState.StateName == CurrentState.StateName || t.SourceState.StateName == StatesList.ANY_STATE).ToList();
 
     public StateMachine(string entryStateName) {
