@@ -3896,7 +3896,7 @@ PrefabInstance:
     - target: {fileID: 8578368891796592799, guid: fbc049f152ac8db41be06c98735ddee8,
         type: 3}
       propertyPath: dashDuration
-      value: 0.25
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 8578368891796592799, guid: fbc049f152ac8db41be06c98735ddee8,
         type: 3}
@@ -3912,6 +3912,91 @@ PrefabInstance:
         type: 3}
       propertyPath: dashMultiplier
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8578368891796592799, guid: fbc049f152ac8db41be06c98735ddee8,
+        type: 3}
+      propertyPath: dashDecayCurve.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8578368891796592799, guid: fbc049f152ac8db41be06c98735ddee8,
+        type: 3}
+      propertyPath: dashDecayCurve.m_Curve.Array.data[0].time
+      value: 0.0070934296
+      objectReference: {fileID: 0}
+    - target: {fileID: 8578368891796592799, guid: fbc049f152ac8db41be06c98735ddee8,
+        type: 3}
+      propertyPath: dashDecayCurve.m_Curve.Array.data[1].time
+      value: 0.9863291
+      objectReference: {fileID: 0}
+    - target: {fileID: 8578368891796592799, guid: fbc049f152ac8db41be06c98735ddee8,
+        type: 3}
+      propertyPath: dashDecayCurve.m_Curve.Array.data[2].time
+      value: 0.8580534
+      objectReference: {fileID: 0}
+    - target: {fileID: 8578368891796592799, guid: fbc049f152ac8db41be06c98735ddee8,
+        type: 3}
+      propertyPath: dashDecayCurve.m_Curve.Array.data[0].value
+      value: 0.49373245
+      objectReference: {fileID: 0}
+    - target: {fileID: 8578368891796592799, guid: fbc049f152ac8db41be06c98735ddee8,
+        type: 3}
+      propertyPath: dashDecayCurve.m_Curve.Array.data[1].value
+      value: -0.99886966
+      objectReference: {fileID: 0}
+    - target: {fileID: 8578368891796592799, guid: fbc049f152ac8db41be06c98735ddee8,
+        type: 3}
+      propertyPath: dashDecayCurve.m_Curve.Array.data[2].value
+      value: 0.288166
+      objectReference: {fileID: 0}
+    - target: {fileID: 8578368891796592799, guid: fbc049f152ac8db41be06c98735ddee8,
+        type: 3}
+      propertyPath: dashDecayCurve.m_Curve.Array.data[0].inSlope
+      value: -4.7185664
+      objectReference: {fileID: 0}
+    - target: {fileID: 8578368891796592799, guid: fbc049f152ac8db41be06c98735ddee8,
+        type: 3}
+      propertyPath: dashDecayCurve.m_Curve.Array.data[1].inSlope
+      value: -0.04858065
+      objectReference: {fileID: 0}
+    - target: {fileID: 8578368891796592799, guid: fbc049f152ac8db41be06c98735ddee8,
+        type: 3}
+      propertyPath: dashDecayCurve.m_Curve.Array.data[2].inSlope
+      value: 0.08550428
+      objectReference: {fileID: 0}
+    - target: {fileID: 8578368891796592799, guid: fbc049f152ac8db41be06c98735ddee8,
+        type: 3}
+      propertyPath: dashDecayCurve.m_Curve.Array.data[0].outSlope
+      value: -4.7185664
+      objectReference: {fileID: 0}
+    - target: {fileID: 8578368891796592799, guid: fbc049f152ac8db41be06c98735ddee8,
+        type: 3}
+      propertyPath: dashDecayCurve.m_Curve.Array.data[1].inWeight
+      value: 0.22049333
+      objectReference: {fileID: 0}
+    - target: {fileID: 8578368891796592799, guid: fbc049f152ac8db41be06c98735ddee8,
+        type: 3}
+      propertyPath: dashDecayCurve.m_Curve.Array.data[1].outSlope
+      value: -0.04858065
+      objectReference: {fileID: 0}
+    - target: {fileID: 8578368891796592799, guid: fbc049f152ac8db41be06c98735ddee8,
+        type: 3}
+      propertyPath: dashDecayCurve.m_Curve.Array.data[2].inWeight
+      value: 0.26367033
+      objectReference: {fileID: 0}
+    - target: {fileID: 8578368891796592799, guid: fbc049f152ac8db41be06c98735ddee8,
+        type: 3}
+      propertyPath: dashDecayCurve.m_Curve.Array.data[2].outSlope
+      value: 0.08550428
+      objectReference: {fileID: 0}
+    - target: {fileID: 8578368891796592799, guid: fbc049f152ac8db41be06c98735ddee8,
+        type: 3}
+      propertyPath: dashDecayCurve.m_Curve.Array.data[0].outWeight
+      value: 0.060714833
+      objectReference: {fileID: 0}
+    - target: {fileID: 8578368891796592799, guid: fbc049f152ac8db41be06c98735ddee8,
+        type: 3}
+      propertyPath: dashDecayCurve.m_Curve.Array.data[1].outWeight
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -35293,12 +35378,12 @@ MonoBehaviour:
   m_RequiresColorTexture: 0
   m_Version: 2
   m_TaaSettings:
-    quality: 3
-    frameInfluence: 0.1
-    jitterScale: 1
-    mipBias: 0
-    varianceClampScale: 0.9
-    contrastAdaptiveSharpening: 0
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
 --- !u!81 &853681159
 AudioListener:
   m_ObjectHideFlags: 0
