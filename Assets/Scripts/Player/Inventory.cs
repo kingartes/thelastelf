@@ -65,6 +65,14 @@ public class Inventory : MonoBehaviour
         OnItemsUpdated?.Invoke(this, EventArgs.Empty);
     }
 
+    public void EquipNextArrow()
+    {
+        GameObject[] arrowTypes = items.Where(s => s.Key.TryGetComponent<Arrow>(out Arrow arrow)).Select(s => s.Key).ToArray();
+        int currentTypeIndex = Array.FindIndex(arrowTypes, s => s == selectedArrowType);
+        currentTypeIndex =  (currentTypeIndex + 1) % arrowTypes.Length;
+        selectedArrowType = arrowTypes[currentTypeIndex];
+    }
+
     public void EquipeArrow(GameObject arrowType)
     {
         selectedArrowType = arrowType;

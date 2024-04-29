@@ -52,6 +52,10 @@ public class PlayerAttack : MonoBehaviour
 
     private void Update()
     {
+        if (InputManager.Instance.SwapArrowPressed())
+        {
+            inventory.EquipNextArrow();
+        }
         if (InputManager.Instance.IsEquipRangePressed())
         {
             weaponManager.EquipBow();

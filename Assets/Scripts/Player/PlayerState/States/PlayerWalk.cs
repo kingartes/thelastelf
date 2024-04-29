@@ -12,7 +12,6 @@ public class PlayerWalk: State
     public PlayerWalk(PlayerMovement playerMovement) : base(PlayerStateList.WALKING)
     {
         this.playerMovement = playerMovement;
-        Debug.Log(playerMovement);
     }
 
     public override void OnEnter()
@@ -36,8 +35,8 @@ public class PlayerWalk: State
         playerMovement.CharacterController.Move(velocityVector);
         Vector3 forward = playerMovement.transform.forward;
         Vector3 right = playerMovement.transform.right;
- 
-        //Debug.DrawRay(playerMovement.transform.position, animationDirection*2, Color.red, 1);
+
+        Debug.Log("Walks");
         playerMovement.Animator.SetFloat("x", Vector3.Dot(movementVector, right));
         playerMovement.Animator.SetFloat("y", Vector3.Dot(movementVector, forward));
     }
