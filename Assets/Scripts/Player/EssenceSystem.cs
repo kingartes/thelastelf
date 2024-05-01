@@ -30,7 +30,6 @@ public class EssenceSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Cursor.visible = false;
         Timer += Time.deltaTime;
 
         EssenceTimer();
