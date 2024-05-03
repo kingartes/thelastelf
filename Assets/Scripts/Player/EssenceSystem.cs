@@ -71,6 +71,8 @@ public class EssenceSystem : MonoBehaviour
             PM.dashCooldown = 1.25f;
 
             PA.attackSpeed = 2f;
+            Indicator.SetActive(false);
+
         }
     }
 

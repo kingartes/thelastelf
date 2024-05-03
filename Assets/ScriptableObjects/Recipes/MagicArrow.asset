@@ -15,9 +15,9 @@ MonoBehaviour:
   recipeName: Magic Arrows
   recipeContent:
     items:
-    - resourceSO: {fileID: 11400000, guid: a224211c8da92394882db8248aa7c87c, type: 2}
-      amount: 1
     - resourceSO: {fileID: 11400000, guid: d8dcd095d53eed5479130ccee1eef7fd, type: 2}
-      amount: 1
+      amount: 3
+    - resourceSO: {fileID: 11400000, guid: a224211c8da92394882db8248aa7c87c, type: 2}
+      amount: 2
     craftItem: {fileID: 5210358676820678604, guid: c4cdf48db2775194bb8a3ecd77cefd06,
       type: 3}
