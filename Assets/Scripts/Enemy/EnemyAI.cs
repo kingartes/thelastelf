@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 [RequireComponent(typeof(VisionSensor))]
 public class EnemyAI : MonoBehaviour
@@ -59,6 +61,8 @@ public class EnemyAI : MonoBehaviour
     protected EnemyAttackSM attackFsm;
     private VisionSensor visionSensor;
 
+    private float distanceToTarget => Vector3.Distance(transform.position, ChaseTarget.position);
+
     protected virtual void SetupFSM()
     {
         movementFsm = new EnemyMovementSM(this);
@@ -85,16 +89,12 @@ public class EnemyAI : MonoBehaviour
 
     public bool IsInAttackRange()
     {
-        Vector3 targetPosition = ChaseTarget.position;
-        Vector3 position = transform.position;
-        return Vector3.Distance(position, targetPosition) <= weapon.AttackRange;
+        return distanceToTarget <= weapon.AttackRange;
     }
 
     public bool IsInChaseAttackRange()
     {
-        Vector3 targetPosition = ChaseTarget.position;
-        Vector3 position = transform.position;
-        return Vector3.Distance(position, targetPosition) <= ChaseAttackDistance;
+        return distanceToTarget <= ChaseAttackDistance;
     }
 
     public bool IsTargetInVision()
@@ -104,6 +104,11 @@ public class EnemyAI : MonoBehaviour
             Debug.Log("Player in vision");
         }
         return visionSensor.IsPlayerVisible;
+    }
+    
+    public bool ShouldChase()
+    {
+        return !IsInAttackRange() && IsTargetInVision();
     }
 
     public void OnDrawGizmosSelected()
