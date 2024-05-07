@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class OpenChest : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class OpenChest : MonoBehaviour
     public GameObject bossHint;
 
     public bool canOpen;
+    public string hintTextContent;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +29,11 @@ public class OpenChest : MonoBehaviour
     public void openContent()
     {
         keyInput.enabled = false;
+
+        TextMeshProUGUI hintContent = bossHint.GetComponent<TextMeshProUGUI>();
+
+        hintContent.text = hintTextContent;
+
         bossHint.SetActive(true);
         Destroy(this);
     }
