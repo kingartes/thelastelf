@@ -16,7 +16,6 @@ public abstract class BaseWeapon: MonoBehaviour
     [SerializeField]
     protected float attackInterval;
 
-
     public float AttackInterval => attackInterval;
     public float AttackRange => attackRange;
     public float Damage => damage;
