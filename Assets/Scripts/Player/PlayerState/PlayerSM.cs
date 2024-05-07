@@ -60,8 +60,6 @@ public class PlayerSM : StateMachine<Player>
 
     private bool IsDashReady()
     {
-        Debug.Log("dashCooldownCounter");
-        Debug.Log(dashCooldownCounter);
         return dashCooldownCounter <= 0;
     }
 }
