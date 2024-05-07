@@ -47,7 +47,5 @@ public class EssenceUI : MonoBehaviour
         essenceColor = flashColor;
         yield return new WaitForSeconds(0.15f);
         essenceColor = regColor;
-
-        Debug.Log("ColorChange");
     }
 }
