@@ -9,6 +9,11 @@ public class CraftItemUI : MonoBehaviour
     [SerializeField]
     private Button craftButton;
 
+    [SerializeField]
+    private CraftRecipeSO recipeSO;
+
+    private Craft.IsValidCraftRecipeDelegate isValidCraft;
+
     TextMeshProUGUI buttonText;
 
     private void Awake()
@@ -16,15 +21,18 @@ public class CraftItemUI : MonoBehaviour
         buttonText = craftButton.GetComponentInChildren<TextMeshProUGUI>();
     }
 
-    public void SetCraftInfo(CraftRecipeSO recipeSO, bool isAvailable, Craft.CraftRecipeDelegate callback)
+    public void SetupCraftButton(Craft.IsValidCraftRecipeDelegate isValidCraft, Craft.CraftRecipeDelegate callback)
     {
-        string text = $@"{recipeSO.recipeName}";
-        buttonText.text = text;
-        craftButton.interactable = isAvailable;
+        this.isValidCraft = isValidCraft;
         craftButton.onClick.AddListener(() =>
         {
             callback(recipeSO);
         });
     }
 
+
+    public void UpdateCraftButton()
+    {
+        craftButton.interactable = isValidCraft(recipeSO);
+    }
 }
