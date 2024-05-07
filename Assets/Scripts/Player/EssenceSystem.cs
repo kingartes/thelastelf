@@ -30,7 +30,6 @@ public class EssenceSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Cursor.visible = false;
         Timer += Time.deltaTime;
 
         EssenceTimer();
@@ -72,6 +71,8 @@ public class EssenceSystem : MonoBehaviour
             PM.dashCooldown = 1.25f;
 
             PA.attackSpeed = 2f;
+            Indicator.SetActive(false);
+
         }
     }
 

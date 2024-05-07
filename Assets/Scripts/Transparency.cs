@@ -14,7 +14,6 @@ public class Transparency : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.visible = false;
 
     }
 
@@ -22,15 +21,18 @@ public class Transparency : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-
-            StartCoroutine(ChangeTransparency());
-        }
 
     }
 
-    IEnumerator ChangeTransparency()
+    public void ChangeTransparency(bool isStart)
+    {
+        if (isStart)
+            StartCoroutine(IncTransparency());
+        else
+            StartCoroutine(DecTransparency());
+    }
+
+    IEnumerator IncTransparency()
     {
         Timer = 0f;
 
@@ -39,6 +41,23 @@ public class Transparency : MonoBehaviour
 
             MatRenderer.materials[0].color = Color.Lerp(startColor, endColor, Timer / 2f);
             MatRenderer.materials[1].color = Color.Lerp(startColor, endColor, Timer / 2f);
+
+
+            Timer += Time.deltaTime;
+            yield return null;
+        }
+
+    }
+
+    IEnumerator DecTransparency()
+    {
+        Timer = 0f;
+
+        while (Timer < 2f)
+        {
+
+            MatRenderer.materials[0].color = Color.Lerp(endColor, startColor, Timer / 2f);
+            MatRenderer.materials[1].color = Color.Lerp(endColor, startColor, Timer / 2f);
 
 
             Timer += Time.deltaTime;

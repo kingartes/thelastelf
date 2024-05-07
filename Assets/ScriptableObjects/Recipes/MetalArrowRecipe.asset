@@ -18,6 +18,6 @@ MonoBehaviour:
     - resourceSO: {fileID: 11400000, guid: a3aae4c183dbe9f40b6cf2cf7db44fd9, type: 2}
       amount: 1
     - resourceSO: {fileID: 11400000, guid: a224211c8da92394882db8248aa7c87c, type: 2}
-      amount: 1
+      amount: 2
     craftItem: {fileID: 5915385555446906340, guid: d57494d0387043b409673209559712f7,
       type: 3}
