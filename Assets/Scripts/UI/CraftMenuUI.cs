@@ -13,10 +13,14 @@ public class CraftMenuUI : MonoBehaviour
     [SerializeField]
     private Transform itemsContainer;
 
+    [SerializeField]
+    private CraftItemUI[] craftButtons;
+
     private void Awake()
     {
         craft.OnStatusChanged += Craft_OnStatusChanged;
         SetVisibility();
+        InitCraftRecipes();
     }
 
     private void SetVisibility()
@@ -24,7 +28,7 @@ public class CraftMenuUI : MonoBehaviour
         this.gameObject.SetActive(craft.IsEnabled);
         if (craft.IsEnabled )
         {
-            RenderCraftRecipes();
+            UpdateCraftRecipes();
         }
     }
 
@@ -33,21 +37,19 @@ public class CraftMenuUI : MonoBehaviour
         SetVisibility();
     }
 
-    private void ClearItems()
+    private void InitCraftRecipes()
     {
-        foreach(Transform child in itemsContainer)
+        foreach(CraftItemUI item in craftButtons)
         {
-            Destroy(child.gameObject);
+            item.SetupCraftButton(craft.IsValidRecipe, craft.CraftRecipe);
         }
     }
 
-    private void RenderCraftRecipes()
+    private void UpdateCraftRecipes()
     {
-        ClearItems();
-        foreach(CraftRecipeSO recipeSO in craft.Recipes)
+        foreach (CraftItemUI item in craftButtons)
         {
-            CraftItemUI item = Instantiate(itemUI, itemsContainer);
-            item.SetCraftInfo(recipeSO, craft.IsValidRecipe(recipeSO), craft.CraftRecipe);
+            item.UpdateCraftButton();
         }
     }
 }

@@ -8,6 +8,7 @@ using UnityEngine;
 public class Craft : SingletoneComponent<Craft>
 {
     public delegate void CraftRecipeDelegate(CraftRecipeSO recipeSO); 
+    public delegate bool IsValidCraftRecipeDelegate(CraftRecipeSO recipeSO); 
 
     public event EventHandler OnStatusChanged;
 
