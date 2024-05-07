@@ -36,7 +36,6 @@ public class PlayerWalk: State
         Vector3 forward = playerMovement.transform.forward;
         Vector3 right = playerMovement.transform.right;
 
-        Debug.Log("Walks");
         playerMovement.Animator.SetFloat("x", Vector3.Dot(movementVector, right));
         playerMovement.Animator.SetFloat("y", Vector3.Dot(movementVector, forward));
     }
