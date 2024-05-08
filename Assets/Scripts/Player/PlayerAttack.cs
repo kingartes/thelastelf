@@ -30,6 +30,15 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField]
     private float shootDamage;
 
+    [SerializeField]
+    private GameObject firstArrow;
+
+    [SerializeField]
+    private GameObject secondArrow;
+
+    [SerializeField]
+    private GameObject thirdArrow;
+
     private WeaponManager weaponManager;
 
     private Inventory inventory;
@@ -58,17 +67,17 @@ public class PlayerAttack : MonoBehaviour
 
     private void Update()
     {
-        if (InputManager.Instance.SwapArrowPressed())
+        if (InputManager.Instance.EquipFirstArrowPressed())
         {
-            inventory.EquipNextArrow();
+            inventory.EquipeArrow(firstArrow);
         }
-        if (InputManager.Instance.IsEquipRangePressed())
+        if (InputManager.Instance.EquipSecondArrowPressed())
         {
-            weaponManager.EquipBow();
+            inventory.EquipeArrow(secondArrow);
         }
-        if (InputManager.Instance.IsEquipedMeelePressed())
+        if (InputManager.Instance.EquipThirdArrowPressed())
         {
-            weaponManager.EquipSword();
+            inventory.EquipeArrow(thirdArrow);
         }
         if (InputManager.Instance.IsPrimaryActionButtonPressed())
         {
@@ -99,7 +108,7 @@ public class PlayerAttack : MonoBehaviour
     private void HandleShoot()
     {
         float chargeMultiplier = chargeble.GetChargeMultiplier();
-        if (attackCounter == 0 && inventory.ArrowsCount > 0)
+        if (attackCounter == 0 && inventory.ArrowsCount(inventory.SelectedArrowType) > 0)
         {
             attackAnimator.ResumeAttackAnimation();
             Projectile projectile = Instantiate(projectilePrefab, shootPoint);

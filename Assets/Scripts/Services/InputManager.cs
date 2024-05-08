@@ -25,6 +25,11 @@ public class InputManager : SingletoneComponent<InputManager>
             movementVector.x = 1;
         }
 
+        if (Craft.Instance.IsEnabled)
+        {
+            return Vector2.zero;
+        }
+
         return movementVector.normalized;
     }
 
@@ -45,21 +50,12 @@ public class InputManager : SingletoneComponent<InputManager>
 
     public bool IsPrimaryActionReleased()
     {
-        return Input.GetMouseButtonUp(0);
+        return Input.GetMouseButtonUp(0) && !Craft.Instance.IsEnabled;
     }
 
     public bool IsDashedPressed()
     {
         return Input.GetKeyDown(KeyCode.LeftShift); 
-    }
-
-    public bool IsEquipRangePressed() { 
-        return Input.GetKeyDown(KeyCode.Alpha1);
-    }
-
-    public bool IsEquipedMeelePressed()
-    {
-        return Input.GetKeyDown(KeyCode.Alpha2);
     }
 
     public bool IsParryPressed()
@@ -75,5 +71,20 @@ public class InputManager : SingletoneComponent<InputManager>
     public bool SwapArrowPressed()
     {
         return Input.GetKeyDown(KeyCode.E);
+    }
+
+    public bool EquipFirstArrowPressed()
+    {
+        return Input.GetKeyDown(KeyCode.Alpha1);
+    }
+
+    public bool EquipSecondArrowPressed()
+    {
+        return Input.GetKeyDown(KeyCode.Alpha2);
+    }
+
+    public bool EquipThirdArrowPressed()
+    {
+        return Input.GetKeyDown(KeyCode.Alpha3);
     }
 }

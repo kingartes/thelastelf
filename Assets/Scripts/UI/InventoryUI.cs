@@ -10,26 +10,25 @@ public class InventoryUI : MonoBehaviour
     private Inventory inventory;
 
     [SerializeField]
-    private InventoryResourceItemUI inventoryResourceItemTemplate;
-
+    private InventoryResourceItemUI[] resourceItems;
+/*
     [SerializeField]
-    private InventoryItemUI inventoryItemTemplate;
+    private InventoryItemUI inventoryItemTemplate;*/
 
     [SerializeField]
     private Transform resourceBlock;
 
-    [SerializeField]
-    private Transform itemBlock;
+/*    [SerializeField]
+    private Transform itemBlock;*/
 
     private void Awake()
     {
         inventory.OnResourcesUpdated += Inventory_OnResourcesUpdated;
-        inventory.OnItemsUpdated += Inventory_OnItemsUpdated;
+        //inventory.OnItemsUpdated += Inventory_OnItemsUpdated;
     }
 
     private void Inventory_OnItemsUpdated(object sender, EventArgs e)
     {
-        CleanItems();
         foreach (KeyValuePair<GameObject, int> item in inventory.Items)
         {
             RenderItem(item.Key, item.Value);
@@ -39,40 +38,25 @@ public class InventoryUI : MonoBehaviour
 
     private void Inventory_OnResourcesUpdated(object sender, System.EventArgs e)
     {
-        CleanResources();
-        foreach( KeyValuePair<string, int> item in inventory.ResourceList)
+        foreach(InventoryResourceItemUI uiItem in resourceItems)
         {
-            RenderInventoryResourceItem(item.Key, item.Value);
+            if(inventory.ResourceList.ContainsKey(uiItem.GetResourceType()))
+            {
+                RenderInventoryResourceItem(uiItem, inventory.ResourceList[uiItem.GetResourceType()]);
+            }
         }
     }
 
-    private void CleanItems()
+    private void RenderInventoryResourceItem(InventoryResourceItemUI uiItem, int amount)
     {
-        foreach (Transform child in itemBlock)
-        {
-            GameObject.Destroy(child.gameObject);
-        }
-    }
-
-    private void CleanResources()
-    {
-        foreach (Transform child in resourceBlock)
-        {
-            GameObject.Destroy(child.gameObject);
-        }
-    }
-
-    private void RenderInventoryResourceItem(string type, int amount)
-    {
-        InventoryResourceItemUI uiItem = Instantiate(inventoryResourceItemTemplate, resourceBlock);
         uiItem.gameObject.SetActive(true);
-        uiItem.SetLabel(type, amount);
+        uiItem.SetLabel(amount);
     }
 
 
     private void RenderItem(GameObject item, int amount)
     {
-        InventoryItemUI itemUI = Instantiate(inventoryItemTemplate, itemBlock);
+        /*InventoryItemUI itemUI = Instantiate(inventoryItemTemplate, itemBlock);
         itemUI.SetItemLabel(item.ToString(), amount);
         if (item.TryGetComponent<MeeleWeapon>(out MeeleWeapon weapon))
         {
@@ -88,6 +72,6 @@ public class InventoryUI : MonoBehaviour
                 inventory.EquipeArrow(item);
             };
             itemUI.SetEquipButton(equipArrowCallback);
-        }
+        }*/
     }
 }

@@ -8,9 +8,16 @@ public class InventoryResourceItemUI : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI resourceLabel;
 
-    public void SetLabel(string type, int amount)
+    [SerializeField]
+    private string resourceType;
+
+    public string GetResourceType()
     {
-        //resourceLabel.text = $"{type}: {amount}";
+        return resourceType;
+    }
+
+    public void SetLabel(int amount)
+    {
         resourceLabel.text = $"{amount}";
     }
 }
