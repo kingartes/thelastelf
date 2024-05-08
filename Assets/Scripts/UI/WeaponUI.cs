@@ -70,6 +70,5 @@ public class WeaponUI : MonoBehaviour
 
     private void SetArrowsLabel()
     {
-        arrowsCountLabel.text = inventory.ArrowsCount.ToString();
     }
 }

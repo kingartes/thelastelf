@@ -29,7 +29,9 @@ public class Inventory : MonoBehaviour
 
     public Dictionary<GameObject, int> Items => items;
 
-    public int ArrowsCount => Items.Where(obj => obj.Key.name == selectedArrowType.name).Select(obj => obj.Value).FirstOrDefault();
+    public int ArrowsCount (GameObject arrowType) => Items.Where(obj => obj.Key.name == arrowType.name).Select(obj => obj.Value).FirstOrDefault();
+
+    public GameObject SelectedArrowType => selectedArrowType;
 
     private void Awake()
     {
@@ -71,6 +73,7 @@ public class Inventory : MonoBehaviour
         int currentTypeIndex = Array.FindIndex(arrowTypes, s => s == selectedArrowType);
         currentTypeIndex =  (currentTypeIndex + 1) % arrowTypes.Length;
         selectedArrowType = arrowTypes[currentTypeIndex];
+        OnItemsUpdated?.Invoke(this, EventArgs.Empty);
     }
 
     public void EquipeArrow(GameObject arrowType)
