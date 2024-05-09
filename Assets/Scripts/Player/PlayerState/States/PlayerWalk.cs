@@ -35,9 +35,10 @@ public class PlayerWalk: State
         playerMovement.CharacterController.Move(velocityVector);
         Vector3 forward = playerMovement.transform.forward;
         Vector3 right = playerMovement.transform.right;
+         
 
-        playerMovement.Animator.SetFloat("x", Vector3.Dot(movementVector, right));
-        playerMovement.Animator.SetFloat("y", Vector3.Dot(movementVector, forward));
+        playerMovement.Animator.SetFloat("x", Vector3.Dot(Quaternion.Euler(0, -85, 0) * movementVector, right));
+        playerMovement.Animator.SetFloat("y", Vector3.Dot(Quaternion.Euler(0, -85, 0) * movementVector, forward));
     }
 
 }

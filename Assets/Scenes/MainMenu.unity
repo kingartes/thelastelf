@@ -2852,7 +2852,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 0.9921569, b: 0.8745099, a: 1}
-    m_HighlightedColor: {r: 0.7264151, g: 0.71806306, b: 0.59278214, a: 1}
+    m_HighlightedColor: {r: 0.20444173, g: 0.4528302, b: 0.10893556, a: 1}
     m_PressedColor: {r: 0.7254902, g: 0.7176471, b: 0.5921569, a: 1}
     m_SelectedColor: {r: 0.7254902, g: 0.7176471, b: 0.5921569, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -2873,7 +2873,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1179721164}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1940270474}
+        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+        m_MethodName: PlayGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &610402096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4752,7 +4764,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1108550575
 RectTransform:
   m_ObjectHideFlags: 0

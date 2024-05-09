@@ -8,11 +8,19 @@ public class MouseWorld : MonoBehaviour
     [SerializeField]
     private LayerMask mousePlaneLayerMask;
 
+    [SerializeField]
+    private Texture2D cursorTexture;
+
     private static MouseWorld instance;
 
     private void Awake()
     {
         instance = this;
+    }
+
+    private void Start()
+    {
+        Cursor.SetCursor(cursorTexture, Vector2.zero, CursorMode.Auto);
     }
 
     private void Update()

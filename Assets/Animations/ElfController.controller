@@ -388,7 +388,7 @@ AnimatorStateMachine:
     m_Position: {x: 310, y: 300, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2794074476397395630}
-    m_Position: {x: 513.87225, y: 467.00305, z: 0}
+    m_Position: {x: 510, y: 470, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -423,7 +423,7 @@ AnimatorState:
   m_PrefabAsset: {fileID: 0}
   m_Name: BowShoot
   m_Speed: 0
-  m_CycleOffset: 1
+  m_CycleOffset: 0
   m_Transitions:
   - {fileID: -6809811371896829278}
   m_StateMachineBehaviours: []

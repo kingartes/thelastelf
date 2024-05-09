@@ -85,6 +85,7 @@ public class PlayerAttack : MonoBehaviour
         }
         if (InputManager.Instance.IsPrimaryActionReleased() && weaponManager.EquipedWeapon == WeaponType.Bow)
         {
+            Debug.Log("Release");
             chargeble.SetCharging(false);
             HandleShoot();
         }

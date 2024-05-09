@@ -19,5 +19,6 @@ public class PlayerAttackAnimator : MonoBehaviour
 
     public void ResumeAttackAnimation()
     {
+        animator.SetTrigger("Shootfinished");
     }
 }
