@@ -8,10 +8,23 @@ public class TutorialPrompts : MonoBehaviour
     public GameObject tutorialPrompt;
     private bool moveComplete = false;
     private bool hasShot = false;
+    private bool hasDodged = false;
+    private bool hasCrafted = false;
+    private bool tutorialEnabled = false;
+
+    private bool wPressed = false;
+    private bool aPressed = false;
+    private bool dPressed = false;
+    private bool sPressed = false;
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (tutorialPromptNumber == 0)
+        {
+            tutorialEnabled = true;
+            tutorialPrompt.SetActive(true);
+        }
+
     }
 
     // Update is called once per frame
@@ -23,7 +36,7 @@ public class TutorialPrompts : MonoBehaviour
         }
         else if (moveComplete)
         {
-            tutorialPrompt.SetActive(false);
+            Destroy(tutorialPrompt);
         }
 
         if (!hasShot && tutorialPromptNumber == 1) 
@@ -32,7 +45,16 @@ public class TutorialPrompts : MonoBehaviour
         }
         else if (hasShot)
         {
-            tutorialPrompt.SetActive(false);
+            Destroy(tutorialPrompt);
+        }
+
+        if (!hasDodged && tutorialPromptNumber == 2)
+        {
+            CheckDodgeInput();
+        }
+        else if (hasDodged)
+        {
+            Destroy(tutorialPrompt);
         }
     }
 
@@ -40,16 +62,14 @@ public class TutorialPrompts : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
+            tutorialEnabled = true;
             tutorialPrompt.SetActive(true);
         }
     }
 
     public void CheckMoveInput()
     {
-        bool wPressed = false;
-        bool aPressed = false;
-        bool dPressed = false;
-        bool sPressed = false;  
+
         
         if (Input.GetKeyDown(KeyCode.W))
             wPressed = true;
@@ -70,14 +90,25 @@ public class TutorialPrompts : MonoBehaviour
 
     public void CheckAttackInput()
     {
-        if (InputManager.Instance.IsPrimaryActionReleased() && !hasShot)
+        if (InputManager.Instance.IsPrimaryActionReleased() && !hasShot && tutorialEnabled)
         {
             hasShot = true;
         }
     }
 
+    public void CheckDodgeInput()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !hasDodged && tutorialEnabled)
+        {
+            hasDodged = true;
+        }
+    }
+
     public void CheckCraftInput()
     {
-
+        if (Input.GetKeyDown(KeyCode.C) && !hasCrafted && tutorialEnabled)
+        {
+            hasCrafted = true;
+        }
     }
 }

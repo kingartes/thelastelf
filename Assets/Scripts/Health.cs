@@ -11,7 +11,7 @@ public class Health : MonoBehaviour
     [SerializeField]
     private float maxHealth = 500;
 
-    private float currentHealth;
+    public float currentHealth;
 
     private void Awake()
     {
